@@ -1,0 +1,14 @@
+package com.example.plugins
+
+import io.ktor.server.application.*
+import io.ktor.server.plugins.callloging.* // Correct import for CallLogging
+import org.slf4j.event.*
+
+fun Application.configureMonitoring() {
+    install(CallLogging) { // Correct usage of CallLogging
+        level = Level.INFO
+        format { call -> // Correct lambda syntax
+            "INFO: ${call.request.method.value} ${call.request.uri}" 
+        }
+  }
+}
